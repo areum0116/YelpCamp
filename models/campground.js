@@ -15,18 +15,16 @@ ImageSchema.virtual('thumbnail').get(function () {
 
 const CampgroundSchema = new Schema({
     title: String,
-    images: [
-        {
-            url: String,
-            filename: String
-        }
-    ],
+    images: [ImageSchema],
     price: Number,
     description: String,
     location: String,
     author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        username: String
     },
     reviews: [
         {
